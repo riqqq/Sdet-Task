@@ -1,0 +1,90 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(518,41): warning CS8602: Dereference of a possibly null reference. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(520,30): warning CS8602: Dereference of a possibly null reference. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(638,35): warning CS8602: Dereference of a possibly null reference. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(639,35): warning CS8602: Dereference of a possibly null reference. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(649,35): warning CS8602: Dereference of a possibly null reference. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(650,35): warning CS8602: Dereference of a possibly null reference. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(656,27): warning CS8600: Converting null literal or possible null value to non-nullable type. [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(25,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(32,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(44,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(50,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(54,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(68,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(74,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(79,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(93,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(103,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(108,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(113,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(122,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(137,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(144,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(149,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(162,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(168,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(174,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(179,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(184,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(192,21): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(200,21): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(204,17): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(211,25): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(216,17): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(220,17): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(281,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(285,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(289,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(293,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(298,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(318,21): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(336,17): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(341,17): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(345,21): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(353,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(373,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(380,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(383,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(397,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(400,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(419,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(424,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(444,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(447,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(454,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(541,14): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(545,51): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(565,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(577,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(594,13): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(672,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(692,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs(700,9): warning NUnit1033: The Write methods are wrappers on TestContext.Out (https://github.com/nunit/nunit.analyzers/tree/master/documentation/NUnit1033.md) [C:\UE_PROJECTS\Sdet-Task\Sdet-Task.csproj]
+  Sdet-Task -> C:\UE_PROJECTS\Sdet-Task\bin\Debug\net9.0\Sdet-Task.dll
+Test run for C:\UE_PROJECTS\Sdet-Task\bin\Debug\net9.0\Sdet-Task.dll (.NETCoreApp,Version=v9.0)
+VSTest version 17.14.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Test06_VerifyAimingFunction [387 ms]
+  Error Message:
+   Microsoft.CSharp.RuntimeBinder.RuntimeBinderException : 'AltTester.AltTesterSDK.Driver.AltObject' does not contain a definition for 'CallMethod'
+  Stack Trace:
+     at CallSite.Target(Closure, CallSite, Object, String, String)
+   at System.Dynamic.UpdateDelegates.UpdateAndExecuteVoid3[T0,T1,T2](CallSite site, T0 arg0, T1 arg1, T2 arg2)
+   at Sdet_Task.LyraSmokeTests.AimAt(Object targetObj) in C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs:line 587
+   at Sdet_Task.LyraSmokeTests.Test06_VerifyAimingFunction() in C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs:line 695
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+  Standard Output Messages:
+ TEST: Verifying AimAt helper method...
+ Target acquired: [TargetObject]
+ Aiming at B_WeaponSpawner_C_UAID_E04F43E61E7294F700_2078486703: Pitch=-54.40, Yaw=-167.91
+ Failed to call Test_SetControlRotation. Ensure the BP modification is applied. Error: 'AltTester.AltTesterSDK.Driver.AltObject' does not contain a definition for 'CallMethod'
+
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 387 ms - Sdet-Task.dll (net9.0)

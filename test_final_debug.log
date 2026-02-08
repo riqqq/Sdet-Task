@@ -1,0 +1,31 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Sdet-Task -> C:\UE_PROJECTS\Sdet-Task\bin\Debug\net9.0\Sdet-Task.dll
+Test run for C:\UE_PROJECTS\Sdet-Task\bin\Debug\net9.0\Sdet-Task.dll (.NETCoreApp,Version=v9.0)
+VSTest version 17.14.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Test06_VerifyAimingFunction [527 ms]
+  Error Message:
+   Microsoft.CSharp.RuntimeBinder.RuntimeBinderException : The type arguments for method 'AltTester.AltTesterSDK.Driver.AltObject.CallComponentMethod<T>(string, string, string, object[], string[])' cannot be inferred from the usage. Try specifying the type arguments explicitly.
+  Stack Trace:
+     at CallSite.Target(Closure, CallSite, Object, String, String, String, Object[], String[])
+   at System.Dynamic.UpdateDelegates.UpdateAndExecuteVoid6[T0,T1,T2,T3,T4,T5](CallSite site, T0 arg0, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
+   at Sdet_Task.LyraSmokeTests.AimAt(Object targetObj) in C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs:line 603
+   at Sdet_Task.LyraSmokeTests.Test06_VerifyAimingFunction() in C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs:line 717
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+  Standard Output Messages:
+ TEST: Verifying AimAt helper method...
+ Target acquired: [TargetObject]
+ Aiming at B_WeaponSpawner_C_UAID_E04F43E61E7295F700_1519408889: Pitch=-85.00, Yaw=0.00
+ DEBUG: Player 'Call' methods: CallComponentMethod
+ DEBUG: Driver 'Call' methods: CallStaticMethod
+ DEBUG: CallComponentMethod Signature: String componentName, String methodName, String assemblyName, Object[] parameters, String[] typeOfParameters
+ Failed to call Test_SetControlRotation. Ensure the BP modification is applied. Error: The type arguments for method 'AltTester.AltTesterSDK.Driver.AltObject.CallComponentMethod<T>(string, string, string, object[], string[])' cannot be inferred from the usage. Try specifying the type arguments explicitly.
+
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 527 ms - Sdet-Task.dll (net9.0)

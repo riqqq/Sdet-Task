@@ -1,0 +1,24 @@
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Sdet-Task -> C:\UE_PROJECTS\Sdet-Task\bin\Debug\net9.0\Sdet-Task.dll
+Test run for C:\UE_PROJECTS\Sdet-Task\bin\Debug\net9.0\Sdet-Task.dll (.NETCoreApp,Version=v9.0)
+VSTest version 17.14.1 (x64)
+
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+  Failed Test06_VerifyAimingFunction [427 ms]
+  Error Message:
+   System.Exception : Player character not found!
+  Stack Trace:
+     at Sdet_Task.LyraSmokeTests.AimAt(Object targetObj) in C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs:line 515
+   at Sdet_Task.LyraSmokeTests.Test06_VerifyAimingFunction() in C:\UE_PROJECTS\Sdet-Task\UnitTest1.cs:line 646
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)
+
+  Standard Output Messages:
+ TEST: Verifying AimAt helper method...
+ Target acquired: [TargetObject]
+
+
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: 427 ms - Sdet-Task.dll (net9.0)

@@ -1,8 +1,11 @@
-﻿using AltTester.AltTesterSDK.Driver;
-using AltTester.AltTesterSDK.Driver.Commands;
-using System;
+﻿using System;
+using System.Threading;
+using System.Reflection;
 using System.Linq;
 using NUnit.Framework;
+using AltTester.AltTesterSDK.Driver;
+using AltTester.AltTesterSDK.Driver.Commands;
+using AltTester.AltTesterSDK.Driver.Communication;
 
 namespace Sdet_Task;
 
@@ -496,13 +499,46 @@ public class LyraSmokeTests
     {
         if (targetObj == null) throw new ArgumentNullException(nameof(targetObj));
         
-        // We use dynamic or reflection to interact with the object
         // 1. Find Player Character
-        var player = altDriver.FindObject(By.NAME, "B_Hero_ShooterMannequin");
+        object? player = null;
+        string[] characterPatterns = new[]
+        {
+            "B_Hero_ShooterMannequin",
+            "LyraCharacter",
+            "PlayerCharacter",
+            "BP_Character"
+        };
+        
+        foreach (var pattern in characterPatterns)
+        {
+            try
+            {
+                // Use dynamic dispatch to call FindObjectsWhichContain
+                dynamic driver = altDriver;
+                var elements = driver.FindObjectsWhichContain(By.NAME, pattern);
+                if (elements != null && elements.Count > 0)
+                {
+                    player = elements[0];
+                    break;
+                }
+            }
+            catch (Exception) { /* Continue to next pattern */ }
+        }
+
         if (player == null)
-            player = altDriver.FindObject(By.NAME, "LyraCharacter");
+        {
+             // Final attempt with exact match and WAIT
+             try 
+             { 
+                 player = altDriver.WaitForObject(By.NAME, "B_Hero_ShooterMannequin", timeout: 10.0);
+             } 
+             catch {}
+        }
             
-        if (player == null) throw new Exception("Player character not found!");
+        if (player == null)
+        {
+             throw new Exception("Player character not found!");
+        }
        
         var target = targetObj; // generic object reference
 
@@ -533,21 +569,52 @@ public class LyraSmokeTests
         TestContext.WriteLine($"Aiming at {targetName}: Pitch={rotation.Pitch:F2}, Yaw={rotation.Yaw:F2}");
 
         // 3. Apply Rotation via Custom Event
-        // Requires 'Test_SetControlRotation' event in the Character Blueprint
-        string parameters = $"{rotation.Pitch},{rotation.Yaw}";
+        string parameters = $"{rotation.Pitch:F2},{rotation.Yaw:F2}";
         
         try 
         {
-            // Call the custom event. 
-            // Note: AltTester CallMethod syntax depends on version, usually MethodName, Parameters string
-            ((dynamic)player).CallMethod("Test_SetControlRotation", parameters);
+            // Use Reflection to invoke generic CallComponentMethod<string>
+            // We assume return type is string (often result/error message)
+            var methods = player.GetType().GetMethods().Where(m => m.Name == "CallComponentMethod");
+            MethodInfo? methodToCall = null;
             
-            // Wait briefly for rotation to interpolate if the BP has interop, or just wait for frame
+            // Find the overload with 5 parameters
+            foreach (var m in methods)
+            {
+                if (m.GetParameters().Length == 5)
+                {
+                    methodToCall = m;
+                    break;
+                }
+            }
+            
+            if (methodToCall != null)
+            {
+                if (methodToCall.IsGenericMethodDefinition)
+                {
+                    methodToCall = methodToCall.MakeGenericMethod(typeof(string));
+                }
+                
+                methodToCall.Invoke(player, new object[] { 
+                    "", 
+                    "Test_SetControlRotation", 
+                    "", 
+                    new object[] { parameters }, 
+                    new string[] { "System.String" } 
+                });
+            }
+            else
+            {
+                 throw new Exception("CallComponentMethod not found via reflection.");
+            }
+            
+            // Wait briefly for rotation to interpolate
             Thread.Sleep(500);
         }
         catch (Exception ex)
         {
-            TestContext.WriteLine($"Failed to call Test_SetControlRotation. Ensure the BP modification is applied. Error: {ex.Message}");
+            var msg = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+            TestContext.WriteLine($"Failed to call Test_SetControlRotation. Error: {msg}");
             throw;
         }
     }
@@ -596,10 +663,25 @@ public class LyraSmokeTests
              );
         }
 
+        // Strategy 3: Check for direct FIELDS on actor (AltTester 1.x fallback)
+        var xField = actor.GetType().GetField("x");
+        if (xField != null)
+        {
+             return (
+                 Convert.ToSingle(xField.GetValue(actor)), 
+                 Convert.ToSingle(actor.GetType().GetField("y").GetValue(actor)), 
+                 Convert.ToSingle(actor.GetType().GetField("z").GetValue(actor))
+             );
+        }
+
         string actorName = "Unknown";
-        try { actorName = (string)actor.GetType().GetProperty("name")?.GetValue(actor) ?? "Unknown"; } catch {}
+        Type actorType = actor.GetType();
+        try { actorName = (string)actorType.GetProperty("name")?.GetValue(actor) ?? "Unknown"; } catch {}
         
-        throw new Exception($"Could not resolve coordinates for actor '{actorName}'. Reflection failed.");
+        var props = string.Join(", ", actorType.GetProperties().Select(p => "Prop:" + p.Name));
+        var fields = string.Join(", ", actorType.GetFields().Select(f => "Field:" + f.Name));
+        
+        throw new Exception($"Could not resolve coordinates for actor '{actorName}' (Type: {actorType.FullName}). Available members: [{props}], [{fields}]");
     }
 
     #endregion
