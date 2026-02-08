@@ -1,5 +1,7 @@
 ﻿using AltTester.AltTesterSDK.Driver;
 using AltTester.AltTesterSDK.Driver.Commands;
+using System;
+using System.Linq;
 using NUnit.Framework;
 
 namespace Sdet_Task;
@@ -461,14 +463,14 @@ public class LyraSmokeTests
     /// Calculates the rotation needed for the source to look at the target.
     /// Returns a tuple (Pitch, Yaw).
     /// </summary>
-    private (float Pitch, float Yaw) CalculateLookAtRotation(AltVector3 sourcePosition, AltVector3 targetPosition)
+    private (float Pitch, float Yaw) CalculateLookAtRotation(float sourceX, float sourceY, float sourceZ, float targetX, float targetY, float targetZ)
     {
         // Unreal Coordinate System:
         // X = Forward, Y = Right, Z = Up
         
-        float deltaX = targetPosition.x - sourcePosition.x;
-        float deltaY = targetPosition.y - sourcePosition.y;
-        float deltaZ = targetPosition.z - sourcePosition.z;
+        float deltaX = targetX - sourceX;
+        float deltaY = targetY - sourceY;
+        float deltaZ = targetZ - sourceZ;
         
         // Yaw (Rotation around Z-axis)
         // Atan2(y, x) gives angle from X-axis
@@ -489,31 +491,46 @@ public class LyraSmokeTests
     /// Aims the player's camera at the specified target actor.
     /// Uses a custom Blueprint event 'Test_SetControlRotation' to bypass Enhanced Input limitations.
     /// </summary>
-    /// <param name="target">The target AltObject to aim at.</param>
-    public void AimAt(AltObject target)
+    /// <param name="targetObj">The target object to aim at.</param>
+    public void AimAt(object targetObj)
     {
-        if (target == null) throw new ArgumentNullException(nameof(target));
-
+        if (targetObj == null) throw new ArgumentNullException(nameof(targetObj));
+        
+        // We use dynamic or reflection to interact with the object
         // 1. Find Player Character
         var player = altDriver.FindObject(By.NAME, "B_Hero_ShooterMannequin");
         if (player == null)
             player = altDriver.FindObject(By.NAME, "LyraCharacter");
             
         if (player == null) throw new Exception("Player character not found!");
+       
+        var target = targetObj; // generic object reference
 
         // 2. Calculate Rotation
-        // We use WorldPosition for more accuracy if available, or transform position
-        var playerPos = player.worldPosition;
-        var targetPos = target.worldPosition;
-        
-        // Adjust player pos to camera height (approximate eye level) if needed
-        // For Lyra mannequin, camera is roughly +60-80z from pivot
-        // Let's assume pivot to pivot for now, or adjust:
-        playerPos.z += 80; 
+        // We use Reflection to avoid build errors with missing AltVector3 type or dynamic binder issues
+        float pX = 0, pY = 0, pZ = 0;
+        float tX = 0, tY = 0, tZ = 0;
 
-        var rotation = CalculateLookAtRotation(playerPos, targetPos);
+        try 
+        {
+            (pX, pY, pZ) = GetActorCoordinates(player);
+            (tX, tY, tZ) = GetActorCoordinates(target);
+        }
+        catch (Exception ex)
+        {
+            TestContext.WriteLine($"Error retrieving coordinates via reflection: {ex.Message}");
+            throw;
+        }
+
+        // Adjust player pos to camera height (approximate eye level) if needed
+        float playerZ = pZ + 80; 
+
+        var rotation = CalculateLookAtRotation(pX, pY, playerZ, tX, tY, tZ);
         
-        TestContext.WriteLine($"Aiming at {target.name}: Pitch={rotation.Pitch:F2}, Yaw={rotation.Yaw:F2}");
+        string targetName = "Target";
+        try { targetName = ((dynamic)target).name; } catch {}
+        
+        TestContext.WriteLine($"Aiming at {targetName}: Pitch={rotation.Pitch:F2}, Yaw={rotation.Yaw:F2}");
 
         // 3. Apply Rotation via Custom Event
         // Requires 'Test_SetControlRotation' event in the Character Blueprint
@@ -523,7 +540,7 @@ public class LyraSmokeTests
         {
             // Call the custom event. 
             // Note: AltTester CallMethod syntax depends on version, usually MethodName, Parameters string
-            player.CallMethod("Test_SetControlRotation", parameters);
+            ((dynamic)player).CallMethod("Test_SetControlRotation", parameters);
             
             // Wait briefly for rotation to interpolate if the BP has interop, or just wait for frame
             Thread.Sleep(500);
@@ -533,6 +550,56 @@ public class LyraSmokeTests
             TestContext.WriteLine($"Failed to call Test_SetControlRotation. Ensure the BP modification is applied. Error: {ex.Message}");
             throw;
         }
+    }
+
+    private (float x, float y, float z) GetActorCoordinates(object actor)
+    {
+        // Recursively try to find x, y, z
+        // Strategy 1: Check for worldPosition property (AltTester 2.x)
+        var wpProp = actor.GetType().GetProperty("worldPosition");
+        if (wpProp != null)
+        {
+            var wp = wpProp.GetValue(actor);
+            if (wp != null)
+            {
+                 // wp is likely AltVector3 struct
+                 // It might use fields (x,y,z) or properties (X,Y,Z)
+                 // We try both lowercase and uppercase
+                 float GetWpCoord(object wrapper, string name)
+                 {
+                     var t = wrapper.GetType();
+                     var f = t.GetField(name); 
+                     if (f != null) return Convert.ToSingle(f.GetValue(wrapper));
+                     
+                     var p = t.GetProperty(name); 
+                     if (p != null) return Convert.ToSingle(p.GetValue(wrapper));
+                     
+                     // Try uppercase
+                     var P = t.GetProperty(name.ToUpper());
+                     if (P != null) return Convert.ToSingle(P.GetValue(wrapper));
+                     
+                     return 0;
+                 }
+                 
+                 return (GetWpCoord(wp, "x"), GetWpCoord(wp, "y"), GetWpCoord(wp, "z"));
+            }
+        }
+        
+        // Strategy 2: Check for direct properties on actor (AltTester 1.x)
+        var xProp = actor.GetType().GetProperty("x");
+        if (xProp != null)
+        {
+             return (
+                 Convert.ToSingle(xProp.GetValue(actor)), 
+                 Convert.ToSingle(actor.GetType().GetProperty("y").GetValue(actor)), 
+                 Convert.ToSingle(actor.GetType().GetProperty("z").GetValue(actor))
+             );
+        }
+
+        string actorName = "Unknown";
+        try { actorName = (string)actor.GetType().GetProperty("name")?.GetValue(actor) ?? "Unknown"; } catch {}
+        
+        throw new Exception($"Could not resolve coordinates for actor '{actorName}'. Reflection failed.");
     }
 
     #endregion
@@ -563,7 +630,7 @@ public class LyraSmokeTests
             Assert.Inconclusive("No suitable target found to test aiming.");
             
         var target = targets[0];
-        TestContext.WriteLine($"Target acquired: {target.name} at {target.worldPosition}");
+        TestContext.WriteLine($"Target acquired: [TargetObject]");
         
         // Exec AimAt
         AimAt(target);
