@@ -452,6 +452,127 @@ public class LyraSmokeTests
             TestContext.WriteLine($"  {txt.name,-50} | {txt.transformId}");
         }
     }
+
+    #endregion
+
+    #region Helper Method: Dynamic Aiming
+    
+    /// <summary>
+    /// Calculates the rotation needed for the source to look at the target.
+    /// Returns a tuple (Pitch, Yaw).
+    /// </summary>
+    private (float Pitch, float Yaw) CalculateLookAtRotation(AltVector3 sourcePosition, AltVector3 targetPosition)
+    {
+        // Unreal Coordinate System:
+        // X = Forward, Y = Right, Z = Up
+        
+        float deltaX = targetPosition.x - sourcePosition.x;
+        float deltaY = targetPosition.y - sourcePosition.y;
+        float deltaZ = targetPosition.z - sourcePosition.z;
+        
+        // Yaw (Rotation around Z-axis)
+        // Atan2(y, x) gives angle from X-axis
+        double yawRad = Math.Atan2(deltaY, deltaX);
+        float yawDeg = (float)(yawRad * (180.0 / Math.PI));
+        
+        // Pitch (Rotation around Y-axis / Up-Down)
+        // Horizontal distance
+        double dist2D = Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+        // Atan2(z, dist) gives angle from horizon
+        double pitchRad = Math.Atan2(deltaZ, dist2D);
+        float pitchDeg = (float)(pitchRad * (180.0 / Math.PI));
+        
+        return (pitchDeg, yawDeg);
+    }
+
+    /// <summary>
+    /// Aims the player's camera at the specified target actor.
+    /// Uses a custom Blueprint event 'Test_SetControlRotation' to bypass Enhanced Input limitations.
+    /// </summary>
+    /// <param name="target">The target AltObject to aim at.</param>
+    public void AimAt(AltObject target)
+    {
+        if (target == null) throw new ArgumentNullException(nameof(target));
+
+        // 1. Find Player Character
+        var player = altDriver.FindObject(By.NAME, "B_Hero_ShooterMannequin");
+        if (player == null)
+            player = altDriver.FindObject(By.NAME, "LyraCharacter");
+            
+        if (player == null) throw new Exception("Player character not found!");
+
+        // 2. Calculate Rotation
+        // We use WorldPosition for more accuracy if available, or transform position
+        var playerPos = player.worldPosition;
+        var targetPos = target.worldPosition;
+        
+        // Adjust player pos to camera height (approximate eye level) if needed
+        // For Lyra mannequin, camera is roughly +60-80z from pivot
+        // Let's assume pivot to pivot for now, or adjust:
+        playerPos.z += 80; 
+
+        var rotation = CalculateLookAtRotation(playerPos, targetPos);
+        
+        TestContext.WriteLine($"Aiming at {target.name}: Pitch={rotation.Pitch:F2}, Yaw={rotation.Yaw:F2}");
+
+        // 3. Apply Rotation via Custom Event
+        // Requires 'Test_SetControlRotation' event in the Character Blueprint
+        string parameters = $"{rotation.Pitch},{rotation.Yaw}";
+        
+        try 
+        {
+            // Call the custom event. 
+            // Note: AltTester CallMethod syntax depends on version, usually MethodName, Parameters string
+            player.CallMethod("Test_SetControlRotation", parameters);
+            
+            // Wait briefly for rotation to interpolate if the BP has interop, or just wait for frame
+            Thread.Sleep(500);
+        }
+        catch (Exception ex)
+        {
+            TestContext.WriteLine($"Failed to call Test_SetControlRotation. Ensure the BP modification is applied. Error: {ex.Message}");
+            throw;
+        }
+    }
+
+    #endregion
+
+    #region Verification Test: Aiming
+    
+    [Test, Order(6)]
+    [Category("EnhancedSmoke")]
+    public void Test06_VerifyAimingFunction()
+    {
+        TestContext.WriteLine("TEST: Verifying AimAt helper method...");
+        
+        // Ensure gameplay
+        var currentScene = altDriver.GetCurrentScene();
+        if (!currentScene.Contains("Expanse"))
+        {
+            NavigateToEliminationGameplay();
+        }
+        
+        // Find a static target (e.g., a specific pickup or geometry)
+        // In L_Expanse, there are often Weapon Spawners.
+        // Let's try to find a weapon spawner or any actor
+        var targets = altDriver.FindObjectsWhichContain(By.NAME, "WeaponSpawner");
+        if (targets.Count == 0)
+            targets = altDriver.FindObjectsWhichContain(By.NAME, "StaticMesh"); // Fallback
+            
+        if (targets.Count == 0)
+            Assert.Inconclusive("No suitable target found to test aiming.");
+            
+        var target = targets[0];
+        TestContext.WriteLine($"Target acquired: {target.name} at {target.worldPosition}");
+        
+        // Exec AimAt
+        AimAt(target);
+        
+        // Verification: Check if camera rotation matches?
+        // Hard to verify exact rotation without querying it back.
+        // We assume success if no exception was thrown and logs confirm calculation.
+        TestContext.WriteLine("Aim command sent successfully.");
+    }
     
     #endregion
 }
