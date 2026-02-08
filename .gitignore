@@ -5,6 +5,8 @@ extract_pdf.py
 build_output.txt
 *.pdf
 *.trx
+*.log
+*.txt
 
 # Standard C# ignores
 bin/
