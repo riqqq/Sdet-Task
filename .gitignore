@@ -1,0 +1,16 @@
+# User specified ignores
+requirements.txt
+requirements_utf8.txt
+extract_pdf.py
+build_output.txt
+*.pdf
+*.trx
+
+# Standard C# ignores
+bin/
+obj/
+TestResults/
+.vs/
+*.user
+*.suo
+*.user
