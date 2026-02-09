@@ -8,6 +8,8 @@ This repository contains the solution for the R8G Software Development Engineer 
   -   **Smoke Tests**: 5 basic tests for Game Launch, Front-End, UI, Gameplay Navigation, and Spawning.
   -   **Helper Methods**: Custom logic for robust menu navigation and dynamic aiming.
 - **Sdet-Task.csproj**: Project configuration.
+- **ProjectMods/**: Modified files for the Lyra project.
+  -   **B_Hero_ShooterMannequin.uasset**: Modified blueprint for the Lyra project.
 
 ## 🚀 Smoke Tests & Rationale
 
