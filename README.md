@@ -72,6 +72,8 @@ To bridge the gap between my C# automation and the specific gameplay logic of Ly
 ### Required: `Test_SetControlRotation` Event
 I chose to implement a **Custom Event** in the Character Blueprint rather than a C++ plugin to keep the integration lightweight and accessible to Scripters/Designers.
 
+Modified files are in the **ProjectMods** folder. I have also included a step-by-step guide on how to implement it below.
+
 **Instructions:**
 1.  **Open Unreal Engine Editor**.
 2.  Open **`B_Hero_ShooterMannequin`** Blueprint (Plugins\GameFeatures\ShooterCore\Content\Game).
