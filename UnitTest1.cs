@@ -77,9 +77,9 @@ public class LyraSmokeTests
         TestContext.WriteLine($"Loaded scene: {currentScene}");
         
         Assert.That(currentScene, Does.Contain("LyraFrontEnd"),
-            "Front-end scene should be loaded");
+            "Front-end (main menu) scene should be loaded");
         
-        TestContext.WriteLine("PASSED: Front-end scene loaded successfully.");
+        TestContext.WriteLine("PASSED: Front-end (main menu) scene loaded successfully.");
     }
     
     #endregion
@@ -193,10 +193,7 @@ public class LyraSmokeTests
                 if (experienceTile != null)
                 {
                     TestContext.WriteLine($"  -> Clicking tile: {experienceTile.name}");
-                    experienceTile.Click();
-                    
-                    // Also try clicking text if tile click fails?
-                    // No, let's trust the tile click first. 
+                    experienceTile.Click(); 
                 }
                 else
                 {
@@ -283,7 +280,7 @@ public class LyraSmokeTests
     {
         TestContext.WriteLine("TEST: Verifying character spawn in gameplay...");
         
-        // Check if we're already on L_Expanse (from Test 4)
+        // Check if we're already on L_Expanse (from Test 4) to save a bit of time going through menus
         var currentScene = altDriver.GetCurrentScene();
         TestContext.WriteLine($"Current scene: {currentScene}");
         
@@ -300,7 +297,7 @@ public class LyraSmokeTests
         // Wait for character to spawn after level loads
         TestContext.WriteLine("Waiting for player character to spawn...");
         
-        // Try multiple character patterns
+        // Try multiple character patterns (should be B_Hero_ShooterMannequin, but just in case)
         string[] characterPatterns = new[]
         {
             "B_Hero_ShooterMannequin",

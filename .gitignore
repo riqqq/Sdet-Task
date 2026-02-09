@@ -1,12 +1,9 @@
 # User specified ignores
-requirements.txt
-requirements_utf8.txt
-extract_pdf.py
-build_output.txt
 *.pdf
 *.trx
 *.log
 *.txt
+*.py
 
 # Standard C# ignores
 bin/
